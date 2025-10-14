@@ -31,9 +31,6 @@ plt.ylim(-0.1,1,1)
 plt.show()
 
 
-
-
-'''
 #矩阵的乘积，用来实现神经网络的内积
 A = np.array([[1,2],[2,3]])
 a1 = np.ndim(A)
@@ -44,3 +41,7 @@ C = np.dot(A,B)
 print(C)
 print(a1)
 print(a2)
+
+'''
+
+batch_mask = np.random.choice(6000,10)  #从6000个数里面随机抽选10个数

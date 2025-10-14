@@ -1,13 +1,23 @@
 #一般用于分类问题时，最后输出层的激活函数
 
 import numpy as np
-
+'''
 def softmax(a):
-    c = np.maximum(a - c)    #防止溢出的对策
-    a_exp = np.exp(a)
+    c = np.maximum(a)    #防止溢出的对策
+    a_exp = np.exp(a - c)
     a_exp_sum = np.sum(a_exp)
     y = a_exp/a_exp_sum
     return y
+'''
+def softmax(x):
+    if x.ndim == 2:
+        x = x.T
+        x = x - np.max(x, axis=0)
+        y = np.exp(x) / np.sum(np.exp(x), axis=0)
+        return y.T 
+
+    x = x - np.max(x) # 溢出对策
+    return np.exp(x) / np.sum(np.exp(x))
 
 #可能会出现的问题：溢出
 #计算机在处理数时，数值必须在4字节或者8字节的有效数据宽度内
